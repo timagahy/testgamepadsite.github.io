@@ -9,7 +9,7 @@
   <p>Нажимай клавиши: W A S D / E F C R</p>
 
   <script>
-    const ws = new WebSocket("ws://localhost:8765"); // Или ws://ВАШ_IP:8765
+    const ws = new WebSocket("ws://26.183.170.208:8765"); // Или ws://ВАШ_IP:8765
 
     ws.onopen = () => console.log("✅ Подключено к серверу");
     ws.onerror = (err) => console.error("❌ Ошибка подключения", err);
@@ -28,3 +28,4 @@
   </script>
 </body>
 </html>
+
