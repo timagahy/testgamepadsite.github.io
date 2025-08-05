@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Remote Gamepad</title>
+</head>
+<body>
+  <h1>Remote Gamepad Controller</h1>
+  <p>Нажимай клавиши: W A S D / E F C R</p>
+
+  <script>
+    const ws = new WebSocket("ws://localhost:8765"); // Или ws://ВАШ_IP:8765
+
+    ws.onopen = () => console.log("✅ Подключено к серверу");
+    ws.onerror = (err) => console.error("❌ Ошибка подключения", err);
+
+    document.addEventListener("keydown", (e) => {
+      if (["w", "a", "s", "d", "e", "f", "c", "r"].includes(e.key.toLowerCase())) {
+        ws.send(JSON.stringify({ key: e.key, type: "down" }));
+      }
+    });
+
+    document.addEventListener("keyup", (e) => {
+      if (["w", "a", "s", "d", "e", "f", "c", "r"].includes(e.key.toLowerCase())) {
+        ws.send(JSON.stringify({ key: e.key, type: "up" }));
+      }
+    });
+  </script>
+</body>
+</html>
